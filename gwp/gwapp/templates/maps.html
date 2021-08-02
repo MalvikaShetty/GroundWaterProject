@@ -1,0 +1,66 @@
+{% extends 'base_login_dashboard.html' %}
+{% load static %}
+
+{% block content %}
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+<span id="main" style="font-size:25px;cursor:pointer;">&#9776; Filters</span>
+<div id="mapid" style="height:100vh;" ></div>
+<script type="text/javascript">
+    function out_layers(map,options){
+
+
+        var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}{y}{x}.png');
+
+           var wmsLayerThane = L.Geoserver.wms("http://tayyabali.in:8080/geoserver/wms", {
+        layers: "Thane:thane",
+        });
+
+        wmsLayerThane.addTo(map);
+
+        var baseLayers={
+            "OSM": osm
+        }
+
+        var groupedOverlays = {
+          "Layers": {
+            "Thane": wmsLayerThane,
+          },
+        };
+
+        L.control.groupedLayers(baseLayers, groupedOverlays).addTo(map);
+
+    }
+
+
+     document.getElementById("mySidenav").onmouseover = function() {mouseOver()};
+      document.getElementById("main").onmouseover = function() {mouseOver()};
+
+
+    function mouseOver() {
+      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("main").style.marginLeft = "250px";
+      document.getElementById("mapid").style.zIndex = "-1";
+    }
+
+      document.getElementById("mySidenav").onmouseout = function() {mouseOut()};
+      document.getElementById("main").onmouseout = function() {mouseOut()};
+
+
+    function mouseOut() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("main").style.marginLeft= "0";
+      document.getElementById("mapid").style.zIndex = "1";
+    }
+
+
+
+</script>
+
+{% endblock %}
