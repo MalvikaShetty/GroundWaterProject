@@ -1,8 +1,8 @@
-{% extends 'base_login_dashboard.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
-
+{% load leaflet_tags %}
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn">&times;</a>
   <a href="#">About</a>
@@ -12,6 +12,7 @@
 </div>
 <span id="main" style="font-size:25px;cursor:pointer;">&#9776; Filters</span>
 <div id="mapid" style="height:100vh;" ></div>
+
 <script type="text/javascript">
     function out_layers(map,options){
 
@@ -62,5 +63,7 @@
 
 
 </script>
+{% leaflet_map "mapid" callback="window.out_layers" %}
 
 {% endblock %}
+

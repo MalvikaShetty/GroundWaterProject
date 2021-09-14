@@ -5,8 +5,12 @@ from django.http import (HttpResponse, HttpResponseNotFound, Http404,
 
 
 def logindash(request):
-    return render(request, 'base_login_dashboard.html')
+    return render(request, 'base.html')
 
 
-def loginmaps(request):
+def maps(request):
     return render(request, 'maps.html')
+
+
+def add_data(request):
+    return render(request, 'add_data.html')
