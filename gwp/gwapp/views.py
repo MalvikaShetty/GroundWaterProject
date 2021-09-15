@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import (HttpResponse, HttpResponseNotFound, Http404,
                          HttpResponseRedirect, HttpResponsePermanentRedirect)
+from .models import *
 # Create your views here.
 
 
@@ -33,7 +34,13 @@ def reports(request):
 
 
 def view_data(request):
-    return render(request, 'view_data.html')
+    user = UserBasic.objects.all()
+    userInfo = UserOtherInfo.objects.all()
+    context = {
+        "user": user,
+        "userInfo": userInfo,
+    }
+    return render(request, 'view_data.html', context)
 
 
 def login(request):
