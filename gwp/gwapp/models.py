@@ -5,6 +5,34 @@ from django.db.models import Manager as GeoManager
 # Create your models here.
 
 
+class District(models.Model):
+    districtName = models.CharField(max_length=500)
+    # cultivatedland etc
+    # population
+    def __str__(self):
+        return self.districtName
+
+
+class Taluka(models.Model):
+    districtName = models.ForeignKey(District, on_delete=models.CASCADE)
+    talukaName = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.talukaName
+
+
+class Village(models.Model):
+    districtName = models.ForeignKey(District, on_delete=models.CASCADE)
+    talukaName = models.ForeignKey(Taluka, on_delete=models.CASCADE)
+    villageName = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.villageName
+
+
+##### User Data #####
+
+
 class UserBasic(models.Model):
     userID = models.CharField(max_length=50, null=False,
                               unique=True, primary_key=True)
@@ -43,14 +71,73 @@ class UserOtherInfo(models.Model):
 class UserWellRegistration(models.Model):
     userID = models.ForeignKey(UserBasic, on_delete=models.CASCADE)
     userWellID = models.CharField(max_length=200, null=True)
+    wellOwner = models.CharField(max_length=200)
+    dateOfWellRegistration = models.DateField()
     userWellType = models.CharField(max_length=50)  # Private or public
-    # userBorewellID = models.CharField(max_length=200, null=True)
-    # userBorewellType = models.CharField(max_length=50)
+    userWellActiveOrInact = models.CharField(max_length=50)
+    userWellDugDate = models.DateField()
+    # userWelllocation = models.PointField(srid=4326)
+    # usage
+    # inactive
+    objects = GeoManager()
 
-    objects = models.Manager()
-
-
-class UserWaterUsage(models.Model):
+class UserBorewellRegistration(models.Model):
     userID = models.ForeignKey(UserBasic, on_delete=models.CASCADE)
-    userWellID = models.ForeignKey(UserWellRegistration, on_delete=models.CASCADE)
-    # userWaterUsageDomestic =
+    userBorewellID = models.CharField(max_length=200, null=True)
+    userBorewellType = models.CharField(max_length=50)
+
+
+
+###### Village/Taluka Data ######
+
+
+class Rainfall(models.Model):
+    yearOfInput = models.IntegerField()
+    dateOfInput = models.DateField()
+    villageName = models.ForeignKey(Taluka, on_delete=models.CASCADE)
+    averageRainfall = models.DecimalField(max_digits=20, decimal_places=3)
+
+
+class GroundWaterLevelPreMonsoon(models.Model):
+    yearOfInput = models.IntegerField()
+    dateOfInput = models.DateField()
+    villageName = models.ForeignKey(Taluka, on_delete=models.CASCADE)
+    noOfObservationWells = models.IntegerField()
+    preMonsoonLevel = models.DecimalField(max_digits=20, decimal_places=3)      #in mbgl
+    totalWaterRechargedFromRainfall = models.DecimalField(max_digits=20, decimal_places=3)
+    totalWaterRechargedFromSurfaceWater = models.DecimalField(max_digits=20, decimal_places=3)
+    # averageFluctuation =
+
+class GroundWaterLevelPostMonsoon(models.Model):
+    yearOfInput = models.IntegerField()
+    dateOfInput = models.DateField()
+    villageName = models.ForeignKey(Taluka, on_delete=models.CASCADE)
+    noOfObservationWells = models.IntegerField()
+    postMonsoonLevel = models.DecimalField(max_digits=20, decimal_places=3)      #in mbgl
+    totalWaterRechargedFromRainfall = models.DecimalField(max_digits=20, decimal_places=3)
+    totalWaterRechargedFromSurfaceWater = models.DecimalField(max_digits=20, decimal_places=3)
+    # averageFluctuation =
+
+class Population(models.Model):
+    villageName = models.ForeignKey(Taluka, on_delete=models.CASCADE)
+    adults = models.IntegerField()
+    under18 = models.IntegerField()
+    seniorCitizen = models.IntegerField()
+    female = models.IntegerField()
+    male = models.IntegerField()
+    other = models.IntegerField()
+
+
+class Landuse(models.Model):
+    villageName = models.ForeignKey(Taluka, on_delete=models.CASCADE)
+    year = models.IntegerField()
+    cultivatedLandArea = models.DecimalField(max_digits=20, decimal_places=3)
+    uncultivatedLandArea = models.DecimalField(max_digits=20, decimal_places=3)  # which can be cultivated
+    noncultivableLandArea = models.DecimalField(max_digits=20, decimal_places=3)  # which can't be cultivated
+    forestArea = models.DecimalField(max_digits=20, decimal_places=3)
+    otherLandUseArea = models.DecimalField(max_digits=20, decimal_places=3)
+
+
+# class IndustryUsage
+#crops
+#recharge structure

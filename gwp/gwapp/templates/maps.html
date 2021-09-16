@@ -3,6 +3,7 @@
 
 {% block content %}
 {% load leaflet_tags %}
+
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn">&times;</a>
   <a href="#">About</a>
@@ -10,20 +11,24 @@
   <a href="#">Clients</a>
   <a href="#">Contact</a>
 </div>
-<span id="main" style="font-size:25px;cursor:pointer;">&#9776; Filters</span>
+<div id="main"></div>
 <div id="mapid" style="height:100vh;" ></div>
 
 <script type="text/javascript">
-    function out_layers(map,options){
+function out_layers(map,options){
 
 
         var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}{y}{x}.png');
 
-           var wmsLayerThane = L.Geoserver.wms("http://tayyabali.in:8080/geoserver/wms", {
+        var wmsLayerThane = L.Geoserver.wms("http://tayyabali.in:8080/geoserver/wms", {
         layers: "Thane:thane",
         });
 
         wmsLayerThane.addTo(map);
+
+        var littleton = L.marker([39.61, -105.02]).on('click', function() {
+             mouseOver();
+        });
 
         var baseLayers={
             "OSM": osm
@@ -32,6 +37,9 @@
         var groupedOverlays = {
           "Layers": {
             "Thane": wmsLayerThane,
+            "Cities": littleton,
+
+
           },
         };
 
@@ -45,7 +53,7 @@
 
 
     function mouseOver() {
-      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("mySidenav").style.width = "500px";
       document.getElementById("main").style.marginLeft = "250px";
       document.getElementById("mapid").style.zIndex = "-1";
     }
@@ -56,13 +64,14 @@
 
     function mouseOut() {
       document.getElementById("mySidenav").style.width = "0";
-      document.getElementById("main").style.marginLeft= "0";
+      document.getElementById("main").style.marginRight= "0";
       document.getElementById("mapid").style.zIndex = "1";
     }
 
 
-
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'src/L.Geoserver.js' %}"></script>
 {% leaflet_map "mapid" callback="window.out_layers" %}
 
 {% endblock %}

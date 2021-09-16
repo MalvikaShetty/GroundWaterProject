@@ -8,10 +8,19 @@ from .models import *
 class UserBasicAdmin(admin.ModelAdmin):
     list_display = ('userID', 'userFirstName', 'userTaluka',)
 
+
 admin.site.register(UserBasic, UserBasicAdmin)
 
 
 class UserOtherInfoAdmin(admin.ModelAdmin):
     list_display = ('userID', 'userAreaOfLandOwned',)
 
+
 admin.site.register(UserOtherInfo, UserOtherInfoAdmin)
+
+
+# class UserWellRegistrationAdmin(admin.ModelAdmin):
+#     list_display = ('userID', 'userWellID','userWellActiveOrInact',)
+#
+#
+# admin.site.register(UserWellRegistration, UserWellRegistrationAdmin)
