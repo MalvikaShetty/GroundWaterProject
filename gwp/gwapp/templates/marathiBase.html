@@ -83,14 +83,14 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-search" style="background: #0e172f;">
-        <div class="container"><a class="navbar-brand" href="#" style="color: rgb(255,255,255);font-size: 23px;">Mahabhujal</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand" href="#" style="color: rgb(255,255,255);font-size: 23px;">महाभूजल</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'Home' %}" style="color: rgb(254,254,254);">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'Dashboard' %}" style="color: rgb(254,254,254);">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'Maps' %}" style="color: rgb(254,254,254);">Map</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'addData' %}" style="color: rgb(254,254,254);">Add Data</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'viewData' %}" style="color: rgb(254,254,254);">View Data</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'Home' %}" style="color: rgb(254,254,254);">मुख्यपृष्ठ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'Dashboard' %}" style="color: rgb(254,254,254);">डॅशबोर्ड</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'Maps' %}" style="color: rgb(254,254,254);">नकाशा</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'addData' %}" style="color: rgb(254,254,254);">माहिती भरा</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'viewData' %}" style="color: rgb(254,254,254);">विश्लेषण वाचा</a></li>
 <!--                     <li class="nav-item">-->
 <!--                    <div class="dropdown">-->
 <!--                    <button class="dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" style="color: rgb(255,255,255);background: rgba(108,117,125,0);width: 55.1125px;height: 42px;border-top-style: none;border-right-width: 0px;border-bottom-width: 0px;border-bottom-style: none;border-left-style: none;">-->
@@ -107,7 +107,7 @@
                 <form class="me-auto search-form" target="_self">
                     <div class="d-flex align-items-center"><label class="form-label d-flex mb-0" for="search-field"><i class="fa fa-search"></i></label><input class="border rounded-pill form-control search-field" type="search" id="search-field" name="search" style="border-right-style: double;width: 439.6px;height: 38px;margin-left: -25px;background: rgba(120,120,120,0.41);"></div>
                 </form>
-                <i class="icon ion-ios-location" style="font-size: 23px;color: rgb(255,255,255);width: 27.75px;"></i><a href="{% url 'Start' %}" style="color: rgb(255,255,255);font-size: 18px;">Osamabad</a>
+                <i class="icon ion-ios-location" style="font-size: 23px;color: rgb(255,255,255);width: 27.75px;"></i><a href="{% url 'Start' %}" style="color: rgb(255,255,255);font-size: 18px;">उस्मानाबाद</a>
             </div>
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" style="color: rgb(255,255,255);background: rgba(108,117,125,0);width: 55.1125px;height: 42px;border-top-style: none;border-right-width: 0px;border-right-color: rgba(108,117,125,0);border-bottom-width: 0px;border-bottom-style: none;border-left-style: none;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" style="height: 32px;font-size: 40px;width: 21px;">
@@ -116,18 +116,18 @@
                     </svg></button>
                 <div class="dropdown-menu">
                     <input type="text" class="form-control dropdown-search-input" placeholder="Search..">
-                    <a class="dropdown-item" href="{% url 'Profile' %}">Profile</a>
-                    <a class="dropdown-item" href="{% url 'ownData' %}">Your Analysis</a>
-                    <a class="dropdown-item" href="#">Log out</a>
+                    <a class="dropdown-item" href="{% url 'Profile' %}">प्रोफाइल</a>
+                    <a class="dropdown-item" href="{% url 'ownData' %}">तुमचे विश्लेषण</a>
+                    <a class="dropdown-item" href="#">बाहेर पडणे</a>
                 </div>
             </div>
                 <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" style="color: white;background: rgba(108,117,125,0);">
-                    Lang
+                    भाषा
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{% url 'Home' %}">English<span class="flag-icon flag-icon-us"></span></a>
-                    <a class="dropdown-item" href="{% url 'marathiHome' %}">Marathi<i class="flag flag-india"></i></a>
+                    <a class="dropdown-item" href="{% url 'Home' %}">English</a>
+                    <a class="dropdown-item" href="{% url 'marathiHome' %}">मराठी</a>
                 </div>
             </div>
         </div>

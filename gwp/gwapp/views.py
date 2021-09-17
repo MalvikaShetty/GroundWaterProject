@@ -9,6 +9,10 @@ def home(request):
     return render(request, 'home.html')
 
 
+def marathi_home(request):
+    return render(request, 'marathiHome.html')
+
+
 def maps(request):
     return render(request, 'maps.html')
 

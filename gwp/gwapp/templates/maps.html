@@ -35,13 +35,15 @@ function out_layers(map,options){
         }
 
         var groupedOverlays = {
-          "Layers": {
+          "Wells": {
             "Thane": wmsLayerThane,
             "Cities": littleton,
-
-
+          },
+          "Rainfall": {
+            "Rainfall": littleton,
           },
         };
+
 
         L.control.groupedLayers(baseLayers, groupedOverlays).addTo(map);
 

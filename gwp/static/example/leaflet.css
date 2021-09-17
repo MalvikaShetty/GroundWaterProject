@@ -101,7 +101,6 @@
 	}
 .leaflet-top,
 .leaflet-bottom {
-	position: absolute;
 	z-index: 1000;
 	pointer-events: none;
 	}
@@ -109,7 +108,7 @@
 	top: 0;
 	}
 .leaflet-right {
-	right: 0;
+	left: 0px;
 	}
 .leaflet-bottom {
 	bottom: 0;
@@ -122,7 +121,7 @@
 	clear: both;
 	}
 .leaflet-right .leaflet-control {
-	float: right;
+	float: left;
 	}
 .leaflet-top .leaflet-control {
 	margin-top: 10px;
@@ -134,7 +133,7 @@
 	margin-left: 10px;
 	}
 .leaflet-right .leaflet-control {
-	margin-right: 10px;
+	margin-left: 10px;
 	}
 
 
@@ -227,7 +226,6 @@
 /* general typography */
 .leaflet-container {
 	font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
-	height: 900px
 	}
 
 
@@ -236,6 +234,8 @@
 .leaflet-bar {
 	box-shadow: 0 1px 5px rgba(0,0,0,0.65);
 	border-radius: 4px;
+	position:relative;
+	top:450px;
 	}
 .leaflet-bar a,
 .leaflet-bar a:hover {
@@ -286,6 +286,8 @@
 .leaflet-control-zoom-out {
 	font: bold 18px 'Lucida Console', Monaco, monospace;
 	text-indent: 1px;
+	box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+	border-radius: 4px;
 	}
 .leaflet-control-zoom-out {
 	font-size: 20px;
@@ -306,23 +308,28 @@
 	background: #fff;
 	border-radius: 5px;
 	}
-
 .leaflet-control-layers-toggle {
-	width:auto;
+	background-image: url(images/layers.png);
+	width: 36px;
+	height: 36px;
+	}
+
+
+.leaflet-control-layers-toggle:after{
+    content:"Filters";
+    font-family: "Lato", sans-serif;
+    font-weight:1000;
+    color:#000;
+}
+.leaflet-control-layers-toggle{
+    width:auto;
     background-position:3px 50% ;
     padding:3px;
     padding-left:36px;
     text-decoration:none;
     line-height:36px;
     margin-right:120px;
-	}
-
-.leaflet-control-layers-toggle:after{
-    content:"Filters";
-    font-family: "Lato", sans-serif;
-    font-weight:1000;
-    color:#000   ;
-    }
+}
 
 .leaflet-retina .leaflet-control-layers-toggle {
 	background-image: url(images/layers-2x.png);
@@ -339,11 +346,17 @@
 .leaflet-control-layers-expanded .leaflet-control-layers-list {
 	display: block;
 	position: relative;
+	margin-right: 50px;
+	padding:0px 50px 300px 0px;
+	height: 400px;
+    overflow:hidden;
 	}
 .leaflet-control-layers-expanded {
-	padding: 6px 10px 6px 6px;
-	color: #333;
-	background: #fff;
+	padding: 6px 6px 6px 6px;
+	color: #fff;
+	font-size:20px;
+	background: #000;
+    height: 400px;
 	}
 .leaflet-control-layers-scrollbar {
 	overflow-y: scroll;
@@ -359,7 +372,7 @@
 	}
 .leaflet-control-layers-separator {
 	height: 0;
-	border-top: 1px solid #ddd;
+	border-top: 1px solid #fff;
 	margin: 5px -10px 5px -6px;
 	}
 

@@ -72,7 +72,7 @@ class UserWellRegistration(models.Model):
     userID = models.ForeignKey(UserBasic, on_delete=models.CASCADE)
     userWellID = models.CharField(max_length=200, null=True)
     wellOwner = models.CharField(max_length=200)
-    dateOfWellRegistration = models.DateField()
+    userdateOfWellRegistration = models.DateField()
     userWellType = models.CharField(max_length=50)  # Private or public
     userWellActiveOrInact = models.CharField(max_length=50)
     userWellDugDate = models.DateField()
@@ -94,32 +94,34 @@ class UserBorewellRegistration(models.Model):
 class Rainfall(models.Model):
     yearOfInput = models.IntegerField()
     dateOfInput = models.DateField()
-    villageName = models.ForeignKey(Taluka, on_delete=models.CASCADE)
+    villageName = models.ForeignKey(Village, on_delete=models.CASCADE)
     averageRainfall = models.DecimalField(max_digits=20, decimal_places=3)
 
 
 class GroundWaterLevelPreMonsoon(models.Model):
     yearOfInput = models.IntegerField()
     dateOfInput = models.DateField()
-    villageName = models.ForeignKey(Taluka, on_delete=models.CASCADE)
+    villageName = models.ForeignKey(Village, on_delete=models.CASCADE)
     noOfObservationWells = models.IntegerField()
     preMonsoonLevel = models.DecimalField(max_digits=20, decimal_places=3)      #in mbgl
     totalWaterRechargedFromRainfall = models.DecimalField(max_digits=20, decimal_places=3)
     totalWaterRechargedFromSurfaceWater = models.DecimalField(max_digits=20, decimal_places=3)
     # averageFluctuation =
 
+
 class GroundWaterLevelPostMonsoon(models.Model):
     yearOfInput = models.IntegerField()
     dateOfInput = models.DateField()
-    villageName = models.ForeignKey(Taluka, on_delete=models.CASCADE)
+    villageName = models.ForeignKey(Village, on_delete=models.CASCADE)
     noOfObservationWells = models.IntegerField()
     postMonsoonLevel = models.DecimalField(max_digits=20, decimal_places=3)      #in mbgl
     totalWaterRechargedFromRainfall = models.DecimalField(max_digits=20, decimal_places=3)
     totalWaterRechargedFromSurfaceWater = models.DecimalField(max_digits=20, decimal_places=3)
     # averageFluctuation =
 
+
 class Population(models.Model):
-    villageName = models.ForeignKey(Taluka, on_delete=models.CASCADE)
+    villageName = models.ForeignKey(Village, on_delete=models.CASCADE)
     adults = models.IntegerField()
     under18 = models.IntegerField()
     seniorCitizen = models.IntegerField()
@@ -129,7 +131,7 @@ class Population(models.Model):
 
 
 class Landuse(models.Model):
-    villageName = models.ForeignKey(Taluka, on_delete=models.CASCADE)
+    villageName = models.ForeignKey(Village, on_delete=models.CASCADE)
     year = models.IntegerField()
     cultivatedLandArea = models.DecimalField(max_digits=20, decimal_places=3)
     uncultivatedLandArea = models.DecimalField(max_digits=20, decimal_places=3)  # which can be cultivated
@@ -138,6 +140,24 @@ class Landuse(models.Model):
     otherLandUseArea = models.DecimalField(max_digits=20, decimal_places=3)
 
 
+class RechargeStructures(models.Model):
+    rechargeStructID = models.CharField(max_length=50, null=False, unique=True)
+    villageName = models.ForeignKey(Village, on_delete=models.CASCADE)
+    rechargeStructBuiltDate = models.DateField()
+    rechargeStructOwnership = models.CharField(max_length=50)  # Private or public
+    rechargeStructVolumePotential = models.DecimalField(max_digits=20, decimal_places=3)
+    rechargeStructVolumeRecharged = models.DecimalField(max_digits=20, decimal_places=3)
+
+
+class RechargeStructuresPrediction(models.Model):
+    rechargeStructID = models.ForeignKey(RechargeStructures, on_delete=models.CASCADE)
+    villageName = models.ForeignKey(Village, on_delete=models.CASCADE)
+    rechargeStructDateOfInput = models.DateField()              #feed data quaterly or every 15 days?
+    rechargeStructVolumeRecharged = models.DecimalField(max_digits=20, decimal_places=3)
+
+
+
 # class IndustryUsage
 #crops
-#recharge structure
+#GWavailability
+#Aquifers
