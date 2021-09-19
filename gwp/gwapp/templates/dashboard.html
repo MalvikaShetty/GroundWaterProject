@@ -405,7 +405,9 @@ let chart = new Chart(ctx, {
         labels: [{% for i in borewells %} '{{i.name|default_if_none:"&nbsp;"}}', {% endfor %}]
       },
       options: {
-        responsive: true
+        responsive: true,
+        legend: {
+        display: false}
       }
     };
 
