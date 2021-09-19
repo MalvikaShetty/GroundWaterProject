@@ -30,17 +30,34 @@ function out_layers(map,options){
              mouseOver();
         });
 
+        var u1 = L.marker([18.31922, 75.96477]).bindPopup("Raghu Sawant"),
+         u2 = L.marker([18.32010, 75.96500]).bindPopup("Issak Md Aatar"),
+         u3 = L.marker([18.32001, 75.96473]).bindPopup("Vishwas Patil"),
+         u4 = L.marker([18.32000, 75.96501]).bindPopup("Shivaji Shinde"),
+         u5 = L.marker([18.31986, 75.96384]).bindPopup("Rajendra Dixith"),
+         u6 = L.marker([18.32000, 75.96384]).bindPopup("Laxman Sawant"),
+         u7 = L.marker([18.31995, 79.64434]).bindPopup("Sachin Patil"),
+         u8 = L.marker([18.31990, 75.96380]).bindPopup("Jayant Yadav"),
+         u9 = L.marker([18.31980, 75.96420]).bindPopup("Jaya Mhatre"),
+         u10 = L.marker([18.31990, 75.96380]).bindPopup("Vasant More"),
+         u11 = L.marker([18.31970, 75.96500]).bindPopup("Sunil Pawar");
+
+
+      var borewells = L.layerGroup([u1,u2,u3,u4,u5,u6,u7,u8,u9,u10,u11]);
+
         var baseLayers={
             "OSM": osm
         }
 
         var groupedOverlays = {
-          "Wells": {
-            "Thane": wmsLayerThane,
-            "Cities": littleton,
+          "Taluka": {
+            "Osmanabad": wmsLayerThane,
           },
-          "Rainfall": {
-            "Rainfall": littleton,
+          "Village": {
+            "Yedshi": littleton,
+          },
+          "Borewells": {
+            "Yedshi Bore": borewells,
           },
         };
 

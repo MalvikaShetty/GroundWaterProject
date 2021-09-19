@@ -22,7 +22,11 @@ def add_data(request):
 
 
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    bore = BorewellsYedshi.objects.all()
+    context = {
+        "borewells": bore,
+    }
+    return render(request, 'dashboard.html', context)
 
 
 def own_data(request):
