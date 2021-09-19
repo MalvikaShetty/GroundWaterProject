@@ -19,6 +19,13 @@ class UserOtherInfoAdmin(admin.ModelAdmin):
 admin.site.register(UserOtherInfo, UserOtherInfoAdmin)
 
 
+class BorewellsYedshiAdmin(admin.ModelAdmin):
+    list_display = ('name', 'type', 'useTime',)
+
+
+admin.site.register(BorewellsYedshi, BorewellsYedshiAdmin)
+
+
 # class UserWellRegistrationAdmin(admin.ModelAdmin):
 #     list_display = ('userID', 'userWellID','userWellActiveOrInact',)
 #

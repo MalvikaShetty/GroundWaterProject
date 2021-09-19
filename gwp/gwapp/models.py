@@ -5,6 +5,24 @@ from django.db.models import Manager as GeoManager
 # Create your models here.
 
 
+#### FOR DEMO ######
+
+class BorewellsYedshi(models.Model):
+    name = models.CharField(max_length=500)
+    location_lat = models.DecimalField(max_digits=20, decimal_places=5)
+    location_long = models.DecimalField(max_digits=20, decimal_places=5)
+    location_altitude = models.DecimalField(max_digits=20, decimal_places=5)
+    location_precision = models.DecimalField(max_digits=20, decimal_places=5)
+    address = models.CharField(max_length=500)
+    type = models.CharField(max_length=100)
+    useTime = models.IntegerField()   #in mins
+    borewellFoot = models.IntegerField()
+
+    objects = models.Manager()
+
+    class Meta:
+        verbose_name_plural = "Borewells Yedshi"
+
 class District(models.Model):
     districtName = models.CharField(max_length=500)
     # cultivatedland etc
